@@ -1,0 +1,25 @@
+version: '3.4'
+
+networks:
+  default:
+
+volumes:
+
+  nexus-data:
+    name: nexus-data
+    external: true
+
+services:
+  nexus:
+    image: sonatype/nexus3:3.34.1
+    container_name: nexus
+    restart: always
+    ports:
+
+      - 8082:8082
+      - 8081:8081
+      - 80:80
+    volumes:
+#      - /root/nfs/nexus:/nexus-data
+      - ./data:/nexus-data:z
+#       -  nexus-data:/nexus-data
